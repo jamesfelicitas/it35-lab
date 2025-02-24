@@ -36,3 +36,4 @@ import {
     );
   };
   
+  export default Search;

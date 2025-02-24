@@ -34,3 +34,5 @@ import {
       </IonPage>
     );
 };
+
+export default Favorites;
