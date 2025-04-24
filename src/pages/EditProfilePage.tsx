@@ -179,3 +179,69 @@ const EditAccount: React.FC = () => {
               </IonText>
             </IonItem>
             <br />
+
+             {/* Avatar Upload Section */}
+          <IonGrid>
+            <IonRow className="ion-justify-content-center ion-align-items-center">
+              <IonCol className="ion-text-center">
+                {avatarPreview && (
+                  <IonAvatar style={{ width: '200px', height: '200px', margin: '10px auto' }}>
+                    <IonImg src={avatarPreview} style={{ objectFit: 'cover' }} />
+                  </IonAvatar>
+                )}
+  
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                />
+  
+                <IonButton expand="block" onClick={() => fileInputRef.current?.click()}>
+                  Upload Avatar
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+
+           {/* Rest of the Form */}
+           <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonInput
+                  label="Username"
+                  type="text"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Enter username"
+                  value={username}
+                  onIonChange={(e) => setUsername(e.detail.value!)}
+                />
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol size="6">
+                <IonInput
+                  label="First Name"
+                  type="text"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Enter First Name"
+                  value={firstName}
+                  onIonChange={(e) => setFirstName(e.detail.value!)}
+                />
+              </IonCol>
+              <IonCol size="6">
+                <IonInput
+                  label="Last Name"
+                  type="text"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Enter Last Name"
+                  value={lastName}
+                  onIonChange={(e) => setLastName(e.detail.value!)}
+                />
+              </IonCol>
+            </IonRow>
+          </IonGrid>  
