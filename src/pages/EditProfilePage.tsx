@@ -266,3 +266,43 @@ const EditAccount: React.FC = () => {
             </IonRow>
           </IonGrid>
   
+          <IonGrid>
+            <IonRow>
+              <IonCol size="12">
+                <IonInput
+                  label="Confirm Password"
+                  type="password"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Confirm New Password"
+                  value={confirmPassword}
+                  onIonChange={(e) => setConfirmPassword(e.detail.value!)}
+                >
+                  <IonInputPasswordToggle slot="end" />
+                </IonInput>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+
+
+          {/* Current Password Field */}
+          <IonGrid>
+            <IonRow>
+              <IonText color="secondary">
+              <h3>Confirm Changes</h3>
+              </IonText>
+              <IonCol size="12">
+                <IonInput
+                  label="Current Password"
+                  type="password"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Enter Current Password to Save Changess"
+                  value={currentPassword}
+                  onIonChange={(e) => setCurrentPassword(e.detail.value!)}
+                >
+                <IonInputPasswordToggle slot="end" />
+                </IonInput>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
