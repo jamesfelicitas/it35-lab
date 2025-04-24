@@ -245,3 +245,24 @@ const EditAccount: React.FC = () => {
               </IonCol>
             </IonRow>
           </IonGrid>  
+          <IonGrid>
+            <IonRow>
+            <IonText color="secondary">
+            <h3>Change Password</h3>
+            </IonText>
+              <IonCol size="12">
+                <IonInput
+                  label="New Password"
+                  type="password"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Enter New Password"
+                  value={password}
+                  onIonChange={(e) => setPassword(e.detail.value!)}
+                >
+                  <IonInputPasswordToggle slot="end" />
+                </IonInput>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+  
