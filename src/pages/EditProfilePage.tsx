@@ -163,3 +163,19 @@ const EditAccount: React.FC = () => {
         setShowAlert(true);
         history.push('/it35-lab/app');
       };
+
+
+      return (
+        <IonPage>
+          <IonHeader>
+            <IonButtons slot="start">
+              <IonBackButton defaultHref="/it35-lab/app" />
+            </IonButtons>
+          </IonHeader>
+          <IonContent className="ion-padding">
+            <IonItem>
+              <IonText color="secondary">
+                <h1>Edit Account</h1>
+              </IonText>
+            </IonItem>
+            <br />
