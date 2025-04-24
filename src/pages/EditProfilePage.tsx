@@ -306,3 +306,20 @@ const EditAccount: React.FC = () => {
               </IonCol>
             </IonRow>
           </IonGrid>
+
+          <IonButton expand="full" onClick={handleUpdate} shape="round">
+          Update Account
+        </IonButton>
+
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          message={alertMessage}
+          buttons={['OK']}
+        />
+      </IonContent>
+    </IonPage>
+  );
+};
+
+export default EditAccount;
