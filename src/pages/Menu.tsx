@@ -35,6 +35,7 @@ import {
      const path = [
       { name: 'Home', url: '/it35-lab/app/Home', icon: homeOutline },
       { name: 'About', url: '/it35-lab/app/About', icon: rocketOutline },
+      {name:'Profile', url: '/it35-lab/app/profile', icon: settingsOutline},
     ]
 
     const handleLogout = async () => {
