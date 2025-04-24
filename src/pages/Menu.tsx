@@ -16,14 +16,16 @@ import {
     useIonRouter
   } from '@ionic/react';
   
-  import { homeOutline, logOutOutline, rocketOutline } from 'ionicons/icons';
+  import {homeOutline, logOutOutline, rocketOutline, settingsOutline} from 'ionicons/icons';
   import { Redirect, Route } from 'react-router';
   import Home from './Home';
   import About from './About'; 
   import { supabase } from '../utils/supabaseClient';
   import { useState } from 'react';
   
-  const Menu: React.FC = () => {
+  import EditProfilePage from './EditProfilePage';
+  
+   const Menu: React.FC = () => {
     
       const navigation = useIonRouter();
      const [showAlert, setShowAlert] = useState(false);
