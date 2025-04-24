@@ -78,6 +78,7 @@ import {
           <IonRouterOutlet id="main">
             <Route exact path="/it35-lab/app/Home" component={Home} />
             <Route exact path="/it35-lab/app/About" component={About} />
+            <Route exact path="/it35-lab/app/profile" component={EditProfilePage} />
             <Route exact path="/it35-lab/app">
               <Redirect to="/it35-lab/app/Home" />
             </Route>
