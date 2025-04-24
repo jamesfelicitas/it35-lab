@@ -57,3 +57,11 @@ const EditAccount: React.FC = () => {
       
         fetchSessionAndData();
       }, [history]);
+
+      const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+          setAvatarFile(file);
+          setAvatarPreview(URL.createObjectURL(file));
+        }
+      };
