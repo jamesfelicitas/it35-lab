@@ -65,3 +65,101 @@ const EditAccount: React.FC = () => {
           setAvatarPreview(URL.createObjectURL(file));
         }
       };
+
+      const handleUpdate = async () => {
+        if (password !== confirmPassword) {
+          setAlertMessage("Passwords don't match.");
+          setShowAlert(true);
+          return;
+        }
+      
+        // Fetch the current session
+        const { data: session, error: sessionError } = await supabase.auth.getSession();
+      
+        if (sessionError || !session || !session.session) {
+          setAlertMessage('Error fetching session or no session available.');
+          setShowAlert(true);
+          return;
+        }
+      
+        const user = session.session.user;
+      
+        if (!user.email) {
+            setAlertMessage('Error: User email is missing.');
+            setShowAlert(true);
+            return;
+          }
+          
+          const { error: passwordError } = await supabase.auth.signInWithPassword({
+            email: user.email,
+            password: currentPassword,
+          });
+          
+      
+        if (passwordError) {
+          setAlertMessage('Incorrect current password.');
+          setShowAlert(true);
+          return;
+        }
+      
+        // Handle avatar upload if the avatar file is changed
+        let avatarUrl = avatarPreview;
+      
+        if (avatarFile) {
+            const fileExt = avatarFile.name.split('.').pop();
+            const fileName = `${Date.now()}.${fileExt}`;
+            const filePath = `avatars/${fileName}`;
+          
+            const { data: uploadData, error: uploadError } = await supabase.storage
+              .from('user-avatars')
+              .upload(filePath, avatarFile, {
+                cacheControl: '3600',
+                upsert: true,  // Allows overwriting existing files
+              });
+          
+            if (uploadError) {
+              setAlertMessage(`Avatar upload failed: ${uploadError.message}`);
+              setShowAlert(true);
+              return;
+            }
+          
+            // Retrieve the public URL
+            const { data } = supabase.storage.from('user-avatars').getPublicUrl(filePath);
+            avatarUrl = data.publicUrl;
+          }
+          
+      
+        // Update user data in the users table
+        const { error: updateError } = await supabase
+          .from('users')
+          .update({
+            user_firstname: firstName,
+            user_lastname: lastName,
+            user_avatar_url: avatarUrl,
+            username: username,
+          })
+          .eq('user_email', user.email);
+      
+        if (updateError) {
+          setAlertMessage(updateError.message);
+          setShowAlert(true);
+          return;
+        }
+      
+        // Update the password if a new password is provided
+        if (password) {
+          const { error: passwordUpdateError } = await supabase.auth.updateUser({
+            password: password,
+          });
+      
+          if (passwordUpdateError) {
+            setAlertMessage(passwordUpdateError.message);
+            setShowAlert(true);
+            return;
+          }
+        }
+      
+        setAlertMessage('Account updated successfully!');
+        setShowAlert(true);
+        history.push('/it35-lab/app');
+      };
