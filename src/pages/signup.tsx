@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
         setShowVerificationModal(true);
     };
 
-    const doRegister = async () => {
+    const dosignup = async () => {
         setShowVerificationModal(false);
     
         try {
@@ -143,7 +143,7 @@ const SignUp: React.FC = () => {
                             <IonCardContent></IonCardContent>
                             <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '5px' }}>
                                 <IonButton fill="clear" onClick={() => setShowVerificationModal(false)}>Cancel</IonButton>
-                                <IonButton color="primary" onClick={doRegister}>Confirm</IonButton>
+                                <IonButton color="primary" onClick={dosignup}>Confirm</IonButton>
                             </div>
                         </IonCard>
                     </IonContent>
